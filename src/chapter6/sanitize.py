@@ -16,7 +16,11 @@ def sanitize(time_string):
 def get_coach_data(file_name):
     try:
         with open(file_name)as athlete:
-            return(athlete).readline().strip().split(',')
+            temp = athlete.readline().strip().split(',')
+            return{'Name': temp.pop(0),'DOB': temp.pop(0), 'Times':\
+                    str(sorted(set([sanitize(t) for t in temp]))[0:3])
+                   }
+#             return(athlete).readline().strip().split(',')
 #             data = athlete.readline()
 #             return(data.strip().split(','))
     except IOError as err:
